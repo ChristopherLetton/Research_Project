@@ -1,0 +1,15 @@
+#!/bin/bash
+#SBATCH --job-name=maf01
+#SBATCH --time=00:05:00
+#SBATCH --mem=2G
+#SBATCH --output=maf01_%j.log
+
+PLINK=/scratch/jsxm6270/tools/plink   
+WORK=/scratch/jsxm6270/gca_skat_V2/data
+
+cd $WORK
+
+$PLINK --bfile LEEDS_Freeze_One.GL.splitmulti \
+       --max-maf 0.01 \         
+       --write-snplist \         
+       --out  rare_variants
