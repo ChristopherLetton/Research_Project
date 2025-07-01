@@ -1,0 +1,13 @@
+#!/bin/bash
+#SBATCH --job-name=chr${CHR}_maf
+#SBATCH --time=00:05:00
+#SBATCH --mem=2G
+#SBATCH --output=logs/chr${CHR}_maf_%j.log
+CHR=$1
+WORK=/scratch/jsxm6270/gca_skat_V2/chr_work/chr${CHR}
+PLINK=/scratch/jsxm6270/tools/plink
+
+$PLINK --bfile ${WORK}/chr${CHR} \
+       --max-maf 0.01 --write-snplist --out ${WORK}/rare_chr${CHR}
+
+wc -l ${WORK}/rare_chr${CHR}.snplist
