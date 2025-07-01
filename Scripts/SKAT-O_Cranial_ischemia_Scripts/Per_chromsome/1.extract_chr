@@ -1,0 +1,12 @@
+#!/bin/bash
+#SBATCH --job-name=chr${CHR}_extract
+#SBATCH --time=00:10:00
+#SBATCH --mem=2G
+#SBATCH --output=logs/chr${CHR}_extract_%j.log
+CHR=$1
+BASE=/scratch/jsxm6270/gca_skat_V2
+WORK=${BASE}/chr_work/chr${CHR}; mkdir -p $WORK
+PLINK=/scratch/jsxm6270/tools/plink
+
+$PLINK --bfile ${BASE}/data/LEEDS_Freeze_One.GL.splitmulti \
+       --chr ${CHR} --make-bed --out ${WORK}/chr${CHR}
