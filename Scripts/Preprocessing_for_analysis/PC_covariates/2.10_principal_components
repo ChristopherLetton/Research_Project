@@ -1,0 +1,3 @@
+	$PLINK --bfile pca_set \
+	      --pca 10 \
+      --out  pcs
