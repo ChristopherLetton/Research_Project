@@ -21,7 +21,7 @@ null_obj     <- SKAT_Null_Model(null_formula, out_type = "D", data = dat)
 
 info <- Open_SSD(file.path(work, paste0("chr",chr,".SSD")),
                  file.path(work, paste0("chr",chr,".SSD.info")))
-res  <- SKATBinary.SSD.All(info, obj=null, method="SKATO")
+res  <- SKATBinary.SSD.All(info, obj=null_obj, method="SKATO")
 Close_SSD()
 
 out <- file.path(work, paste0("chr", chr, "_SKAT.tsv"))
