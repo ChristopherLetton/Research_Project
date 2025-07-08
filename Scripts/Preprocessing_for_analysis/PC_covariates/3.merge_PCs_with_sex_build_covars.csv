@@ -1,0 +1,18 @@
+	library(readr); library(dplyr)
+	
+	base <- "/scratch/gca_skat_V2/data"
+	
+	# read updated fam (SEX already 1/2/0)
+	fam  <- read_table2(file.path(base, "LEEDS_Freeze_One.GL.splitmulti.fam"),
+	                    col_names = c("FID","IID","PID","MID","SEX","PHENO"))
+	
+	# read PLINK eigenvec
+	pcs  <- read_table2(file.path(base, "pcs.eigenvec"), col_names = FALSE)
+	names(pcs) <- c("FID","IID", paste0("PC", 1:10))
+	
+	covars <- fam %>%
+	          select(IID, SEX) %>%          # just SEX (already recoded)
+	          inner_join(pcs %>% select(-FID), by = "IID")  # merge PCs
+	
+	write_csv(covars, file.path(base, "covars.csv"))
+cat("✅ covars.csv written with", nrow(covars), "samples\n")
