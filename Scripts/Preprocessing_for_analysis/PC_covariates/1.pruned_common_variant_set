@@ -3,3 +3,7 @@
 	      --geno 0.10 \
 	      --indep-pairwise 200 50 0.2 \
       --out pca_prune
+
+$PLINK --bfile LEEDS_Freeze_One.GL.splitmulti \
+	--extract pca_prune.prune.in \
+      --make-bed --out pca_set
