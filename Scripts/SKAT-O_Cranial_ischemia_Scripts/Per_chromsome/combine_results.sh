@@ -1,4 +1,4 @@
-RUN=Cipermtrans # run tag
+RUN=CIpermtrans # run tag
 BASE=/scratch/jsxm6270/gca_skat_${RUN}
 cd ${BASE}/chr_work
 # header once
